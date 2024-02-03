@@ -5,7 +5,12 @@ import br.com.itau.geradornotafiscal.core.enums.Regiao;
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
 import br.com.itau.geradornotafiscal.core.model.*;
+import br.com.itau.geradornotafiscal.core.port.AgendamentoPort;
+import br.com.itau.geradornotafiscal.core.port.EstoquePort;
+import br.com.itau.geradornotafiscal.core.port.FinanceiroPort;
+import br.com.itau.geradornotafiscal.core.port.RegistroPort;
 import br.com.itau.geradornotafiscal.core.usecase.GeradorNotaFiscalServiceUseCase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +20,19 @@ import java.util.UUID;
 
 @Service
 public class GeradorNotaFiscalService implements GeradorNotaFiscalServiceUseCase {
+
+    @Autowired
+    private AgendamentoPort agendamentoPort;
+
+    @Autowired
+    private EstoquePort estoquePort;
+
+    @Autowired
+    private RegistroPort registroPort;
+
+    @Autowired
+    private FinanceiroPort financeiroPort;
+
     @Override
     public NotaFiscal gerarNotaFiscal(Pedido pedido) {
 
@@ -123,10 +141,11 @@ public class GeradorNotaFiscalService implements GeradorNotaFiscalServiceUseCase
                 .destinatario(pedido.getDestinatario())
                 .build();
 
-        new EstoqueService().enviarNotaFiscalParaBaixaEstoque(notaFiscal);
-        new RegistroService().registrarNotaFiscal(notaFiscal);
-        new EntregaService().agendarEntrega(notaFiscal);
-        new FinanceiroService().enviarNotaFiscalParaContasReceber(notaFiscal);
+        estoquePort.enviarNotaFiscalParaBaixaEstoque(notaFiscal);
+        registroPort.RegistrarNotaFiscal(notaFiscal);
+        agendamentoPort.agendarEntrega(notaFiscal);
+        agendamentoPort.criarAgendamentoEntrega(notaFiscal);
+        financeiroPort.enviarNotaFiscalParaContasReceber(notaFiscal);
 
         return notaFiscal;
 
