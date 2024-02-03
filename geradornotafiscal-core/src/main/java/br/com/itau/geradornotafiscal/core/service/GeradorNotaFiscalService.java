@@ -10,6 +10,7 @@ import br.com.itau.geradornotafiscal.core.port.EstoquePort;
 import br.com.itau.geradornotafiscal.core.port.FinanceiroPort;
 import br.com.itau.geradornotafiscal.core.port.RegistroPort;
 import br.com.itau.geradornotafiscal.core.usecase.GeradorNotaFiscalServiceUseCase;
+import br.com.itau.geradornotafiscal.core.utils.ObterAliquota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 
 @Service
 public class GeradorNotaFiscalService implements GeradorNotaFiscalServiceUseCase {
@@ -40,69 +42,18 @@ public class GeradorNotaFiscalService implements GeradorNotaFiscalServiceUseCase
         TipoPessoa tipoPessoa = destinatario.getTipoPessoa();
         List<ItemNotaFiscal> itemNotaFiscalList = new ArrayList<>();
 
-
         CalculadoraAliquotaProduto calculadoraAliquotaProduto = new CalculadoraAliquotaProduto();
 
-        if (tipoPessoa == TipoPessoa.FISICA) {
-            double valorTotalItens = pedido.getValorTotalItens();
-            double aliquota;
-
-            if (valorTotalItens < 500) {
-                aliquota = 0;
-            } else if (valorTotalItens <= 2000) {
-                aliquota = 0.12;
-            } else if (valorTotalItens <= 3500) {
-                aliquota = 0.15;
-            } else {
-                aliquota = 0.17;
+        switch (tipoPessoa) {
+            case FISICA -> {
+                double valorTotalItens = pedido.getValorTotalItens();
+                double aliquota = new ObterAliquota().pessoaFisica(valorTotalItens);
+                itemNotaFiscalList = calculadoraAliquotaProduto.calcularAliquota(pedido.getItens(), aliquota);
             }
-            itemNotaFiscalList = calculadoraAliquotaProduto.calcularAliquota(pedido.getItens(), aliquota);
-        } else if (tipoPessoa == TipoPessoa.JURIDICA) {
-
-            RegimeTributacaoPJ regimeTributacao = destinatario.getRegimeTributacao();
-
-            if (regimeTributacao == RegimeTributacaoPJ.SIMPLES_NACIONAL) {
-
+            case JURIDICA -> {
+                RegimeTributacaoPJ regimeTributacao = destinatario.getRegimeTributacao();
                 double valorTotalItens = pedido.getValorTotalItens();
-                double aliquota;
-
-                if (valorTotalItens < 1000) {
-                    aliquota = 0.03;
-                } else if (valorTotalItens <= 2000) {
-                    aliquota = 0.07;
-                } else if (valorTotalItens <= 5000) {
-                    aliquota = 0.13;
-                } else {
-                    aliquota = 0.19;
-                }
-                itemNotaFiscalList = calculadoraAliquotaProduto.calcularAliquota(pedido.getItens(), aliquota);
-            } else if (regimeTributacao == RegimeTributacaoPJ.LUCRO_REAL) {
-                double valorTotalItens = pedido.getValorTotalItens();
-                double aliquota;
-
-                if (valorTotalItens < 1000) {
-                    aliquota = 0.03;
-                } else if (valorTotalItens <= 2000) {
-                    aliquota = 0.09;
-                } else if (valorTotalItens <= 5000) {
-                    aliquota = 0.15;
-                } else {
-                    aliquota = 0.20;
-                }
-                itemNotaFiscalList = calculadoraAliquotaProduto.calcularAliquota(pedido.getItens(), aliquota);
-            } else if (regimeTributacao == RegimeTributacaoPJ.LUCRO_PRESUMIDO) {
-                double valorTotalItens = pedido.getValorTotalItens();
-                double aliquota;
-
-                if (valorTotalItens < 1000) {
-                    aliquota = 0.03;
-                } else if (valorTotalItens <= 2000) {
-                    aliquota = 0.09;
-                } else if (valorTotalItens <= 5000) {
-                    aliquota = 0.16;
-                } else {
-                    aliquota = 0.20;
-                }
+                double aliquota = new ObterAliquota().pessoaJuridica(valorTotalItens, regimeTributacao);
                 itemNotaFiscalList = calculadoraAliquotaProduto.calcularAliquota(pedido.getItens(), aliquota);
             }
         }

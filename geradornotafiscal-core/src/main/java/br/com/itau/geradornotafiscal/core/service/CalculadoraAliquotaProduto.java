@@ -3,26 +3,30 @@ package br.com.itau.geradornotafiscal.core.service;
 import br.com.itau.geradornotafiscal.core.model.Item;
 import br.com.itau.geradornotafiscal.core.model.ItemNotaFiscal;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CalculadoraAliquotaProduto {
-    private static List<ItemNotaFiscal> itemNotaFiscalList = new ArrayList<>();
 
     public List<ItemNotaFiscal> calcularAliquota(List<Item> items, double aliquotaPercentual) {
 
-        for (Item item : items) {
-            double valorTributo = item.getValorUnitario() * aliquotaPercentual;
-            ItemNotaFiscal itemNotaFiscal = ItemNotaFiscal.builder()
-                    .idItem(item.getIdItem())
-                    .descricao(item.getDescricao())
-                    .valorUnitario(item.getValorUnitario())
-                    .quantidade(item.getQuantidade())
-                    .valorTributoItem(valorTributo)
-                    .build();
-            itemNotaFiscalList.add(itemNotaFiscal);
-        }
-        return itemNotaFiscalList;
+        return items.stream()
+                .map(item -> criarItemNotaFiscal(item, calcularValorTributo(item, aliquotaPercentual)))
+                .collect(Collectors.toList());
+    }
+
+    private double calcularValorTributo(Item item, double aliquotaPercentual) {
+        return item.getValorUnitario() * aliquotaPercentual;
+    }
+
+    private ItemNotaFiscal criarItemNotaFiscal(Item item, double valorTributo) {
+        return new ItemNotaFiscal(
+                item.getIdItem(),
+                item.getDescricao(),
+                item.getValorUnitario(),
+                item.getQuantidade(),
+                valorTributo
+        );
     }
 }
 
