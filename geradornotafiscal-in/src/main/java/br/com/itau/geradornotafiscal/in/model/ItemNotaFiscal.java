@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class ItemNotaFiscal {
+
     @JsonProperty("id_item")
     private String idItem;
 

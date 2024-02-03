@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class Pedido {
+public class PedidoRequest {
 
     @JsonProperty("id_pedido")
     private int idPedido;

@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 public class NotaFiscalResponse {
+
     @JsonProperty("id_nota_fiscal")
     private String idNotaFiscal;
 
@@ -22,6 +23,7 @@ public class NotaFiscalResponse {
 
     @JsonProperty("itens")
     private List<ItemNotaFiscal> itens;
+
     @JsonProperty("destinatario")
     private Destinatario destinatario;
 

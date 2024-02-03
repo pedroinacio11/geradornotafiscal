@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class Item {
+
     @JsonProperty("id_item")
     private String idItem;
 
