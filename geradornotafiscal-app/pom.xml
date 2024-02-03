@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>br.com.itau</groupId>
+        <artifactId>geradornotafiscal</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>geradornotafiscal-app</artifactId>
+    <name>Gerador Nota Fiscal App</name>
+    <description>Modulo com as configurações da aplicação, bem como os interceptors das chamadas e geração de métricas
+    </description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>br.com.itau</groupId>
+            <artifactId>geradornotafiscal-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.itau</groupId>
+            <artifactId>geradornotafiscal-in</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>br.com.itau</groupId>
+            <artifactId>geradornotafiscal-out</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
+                    </image>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
