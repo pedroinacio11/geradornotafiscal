@@ -1,29 +1,26 @@
-package br.com.itau.geradornotafiscal.core.utils;
+package br.com.itau.geradornotafiscal.core.service;
 
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
+import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
+import org.springframework.stereotype.Service;
 
-public class ObterAliquota {
+import static br.com.itau.geradornotafiscal.core.utils.Constants.*;
 
-    private static final double ALIQUOTA_ATE_500 = 0;
-    private static final double ALIQUOTA_ATE_2000 = 0.12;
-    private static final double ALIQUOTA_ATE_3500 = 0.15;
-    private static final double ALIQUOTA_ACIMA_3500 = 0.17;
-    private static final double ALIQUOTA_SIMPLES_NACIONAL_ATE_1000 = 0.03;
-    private static final double ALIQUOTA_SIMPLES_NACIONAL_ATE_2000 = 0.07;
-    private static final double ALIQUOTA_SIMPLES_NACIONAL_ATE_5000 = 0.13;
-    private static final double ALIQUOTA_SIMPLES_NACIONAL_ACIMA_5000 = 0.19;
-    private static final double ALIQUOTA_LUCRO_REAL_ATE_1000 = 0.03;
-    private static final double ALIQUOTA_LUCRO_REAL_ATE_2000 = 0.09;
-    private static final double ALIQUOTA_LUCRO_REAL_ATE_5000 = 0.15;
-    private static final double ALIQUOTA_LUCRO_REAL_ACIMA_5000 = 0.20;
-    private static final double ALIQUOTA_LUCRO_PRESUMIDO_ATE_1000 = 0.03;
-    private static final double ALIQUOTA_LUCRO_PRESUMIDO_ATE_2000 = 0.09;
-    private static final double ALIQUOTA_LUCRO_PRESUMIDO_ATE_5000 = 0.16;
-    private static final double ALIQUOTA_LUCRO_PRESUMIDO_ACIMA_5000 = 0.20;
+@Service
+public class CalcularAliquotaTipoPessoaService {
 
+    public double obterAliquota(TipoPessoa tipoPessoa, double valorTotalItens, RegimeTributacaoPJ regimeTributacao) {
+        switch (tipoPessoa) {
+            case FISICA:
+                return pessoaFisica(valorTotalItens);
+            case JURIDICA:
+                return pessoaJuridica(valorTotalItens, regimeTributacao);
+            default:
+                throw new IllegalArgumentException("Tipo de pessoa não suportado: " + tipoPessoa);
+        }
+    }
 
-
-    public double pessoaFisica(double valorTotalItens) {
+    private double pessoaFisica(double valorTotalItens) {
 
         if (valorTotalItens < 500) {
             return ALIQUOTA_ATE_500;
@@ -36,7 +33,7 @@ public class ObterAliquota {
         }
     }
 
-    public double pessoaJuridica(double valorTotalItens, RegimeTributacaoPJ regimeTributacao) {
+    private double pessoaJuridica(double valorTotalItens, RegimeTributacaoPJ regimeTributacao) {
 
         return switch (regimeTributacao) {
             case SIMPLES_NACIONAL -> calcularAliquotaSimplesNacional(valorTotalItens);
