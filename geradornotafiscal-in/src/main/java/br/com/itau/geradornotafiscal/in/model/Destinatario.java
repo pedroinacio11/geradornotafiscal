@@ -2,6 +2,7 @@ package br.com.itau.geradornotafiscal.in.model;
 
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Destinatario {
     private TipoPessoa tipoPessoa;
 
     @JsonProperty("regime_tributacao")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private RegimeTributacaoPJ regimeTributacao;
 
     @JsonProperty("documentos")

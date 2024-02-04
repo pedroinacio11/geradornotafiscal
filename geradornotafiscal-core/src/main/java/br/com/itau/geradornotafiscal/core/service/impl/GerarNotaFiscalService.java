@@ -1,4 +1,4 @@
-package br.com.itau.geradornotafiscal.core.service;
+package br.com.itau.geradornotafiscal.core.service.impl;
 
 import br.com.itau.geradornotafiscal.core.model.NotaFiscal;
 import br.com.itau.geradornotafiscal.core.model.Pedido;
@@ -6,6 +6,9 @@ import br.com.itau.geradornotafiscal.core.port.AgendamentoPort;
 import br.com.itau.geradornotafiscal.core.port.EstoquePort;
 import br.com.itau.geradornotafiscal.core.port.FinanceiroPort;
 import br.com.itau.geradornotafiscal.core.port.RegistroPort;
+import br.com.itau.geradornotafiscal.core.service.CalcularAliquotaProdutoService;
+import br.com.itau.geradornotafiscal.core.service.CalcularAliquotaTipoPessoaService;
+import br.com.itau.geradornotafiscal.core.service.CalcularFreteService;
 import br.com.itau.geradornotafiscal.core.usecase.GeradorNotaFiscalServiceUseCase;
 import br.com.itau.geradornotafiscal.core.utils.NotaFiscalBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
