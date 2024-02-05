@@ -1,8 +1,5 @@
 package br.com.itau.geradornotafiscal.app.handler;
 
-import br.com.itau.geradornotafiscal.core.exception.ValorFreteInvalidoException;
-import br.com.itau.geradornotafiscal.core.exception.ValorFreteMuitoAltoException;
-import br.com.itau.geradornotafiscal.core.exception.ValorFreteZeroException;
 import br.com.itau.geradornotafiscal.in.exception.DocumentoValidationException;
 import br.com.itau.geradornotafiscal.in.exception.PedidoValidationException;
 import br.com.itau.geradornotafiscal.in.model.error.ErroResponse;
