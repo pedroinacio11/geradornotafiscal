@@ -1,4 +1,4 @@
-package br.com.itau.geradornotafiscal.in.model;
+package br.com.itau.geradornotafiscal.in.model.error;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

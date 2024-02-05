@@ -1,11 +1,8 @@
 package br.com.itau.geradornotafiscal.in.validator;
 
 import br.com.itau.geradornotafiscal.in.exception.PedidoValidationException;
-import br.com.itau.geradornotafiscal.in.model.Item;
-import br.com.itau.geradornotafiscal.in.model.PedidoRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import br.com.itau.geradornotafiscal.in.model.pedido.Item;
+import br.com.itau.geradornotafiscal.in.model.pedido.PedidoRequest;
 
 import java.util.List;
 
@@ -24,8 +21,5 @@ public class PedidoValidator {
         }
         return valorTotal;
     }
-
-
-
 
 }

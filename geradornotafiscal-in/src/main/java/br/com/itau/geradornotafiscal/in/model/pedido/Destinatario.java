@@ -1,4 +1,4 @@
-package br.com.itau.geradornotafiscal.in.model;
+package br.com.itau.geradornotafiscal.in.model.pedido;
 
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;

@@ -3,8 +3,8 @@ package br.com.itau.geradornotafiscal.in.controller;
 import br.com.itau.geradornotafiscal.core.model.NotaFiscal;
 import br.com.itau.geradornotafiscal.core.model.Pedido;
 import br.com.itau.geradornotafiscal.core.usecase.GeradorNotaFiscalServiceUseCase;
-import br.com.itau.geradornotafiscal.in.exception.PedidoValidationException;
-import br.com.itau.geradornotafiscal.in.model.*;
+import br.com.itau.geradornotafiscal.in.model.pedido.NotaFiscalResponse;
+import br.com.itau.geradornotafiscal.in.model.pedido.PedidoRequest;
 import br.com.itau.geradornotafiscal.in.validator.PedidoValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,6 @@ public class GeradorNFController {
         // Aqui você pode realizar as operações desejadas com o objeto Pedido
 
         PedidoValidator.validarPedido(pedido);
-
 
         // Exemplo de retorno
         String mensagem = "Nota fiscal gerada com sucesso para o pedido: " + pedido.getIdPedido();
