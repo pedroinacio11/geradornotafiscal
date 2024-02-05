@@ -2,6 +2,7 @@ package br.com.itau.geradornotafiscal.in.model.pedido;
 
 import br.com.itau.geradornotafiscal.core.enums.TipoDocumento;
 import br.com.itau.geradornotafiscal.in.exception.DocumentoValidationException;
+import br.com.itau.geradornotafiscal.in.validator.NumeroDocumentoValidator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -17,15 +18,12 @@ public class Documento {
     private TipoDocumento tipo;
 
     public void setNumero(String numero) {
-        if (!isValidNumero(numero)) {
-            throw new DocumentoValidationException();
-        }
-        this.numero = numero;
+
+        NumeroDocumentoValidator numeroDocumentoValidator = new NumeroDocumentoValidator();
+        this.numero = numeroDocumentoValidator.getDocumento(numero);
         this.tipo = numero.length() == 11 ? CPF : CNPJ;
     }
 
-    private boolean isValidNumero(String numero) {
-        return numero != null && (numero.matches("\\d{11}") || numero.matches("\\d{14}"));
-    }
+
 
 }
