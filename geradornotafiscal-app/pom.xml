@@ -12,7 +12,7 @@
 
     <artifactId>geradornotafiscal-app</artifactId>
     <name>Gerador Nota Fiscal App</name>
-    <description>Modulo com as configurações da aplicação, bem como os interceptors das chamadas e geração de métricas
+    <description>Modulo com as configurações da aplicação (config, geração de métricas, interceptors)
     </description>
 
     <dependencies>

@@ -1,4 +1,4 @@
-package br.com.itau.geradornotafiscal.core.service.impl;
+package br.com.itau.geradornotafiscal.core.service;
 
 import br.com.itau.geradornotafiscal.core.model.NotaFiscal;
 import br.com.itau.geradornotafiscal.core.model.Pedido;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class GerarNotaFiscalService implements GeradorNotaFiscalServiceUseCase {
+public class GerarNotaFiscalServiceImpl implements GeradorNotaFiscalServiceUseCase {
 
     @Autowired
     private AgendamentoPort agendamentoPort;

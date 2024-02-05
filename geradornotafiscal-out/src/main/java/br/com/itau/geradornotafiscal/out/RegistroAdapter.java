@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class RegistroAdapter implements RegistroPort {
     @Override
     public void RegistrarNotaFiscal(NotaFiscal notaFiscal) {
-
         try {
             //Simula o registro da nota fiscal
             Thread.sleep(500);

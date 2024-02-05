@@ -1,4 +1,4 @@
-package br.com.itau.geradornotafiscal.core.service.impl;
+package br.com.itau.geradornotafiscal.core.service;
 
 import br.com.itau.geradornotafiscal.core.port.CalculoImpostoPort;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import static br.com.itau.geradornotafiscal.core.utils.Constants.*;
 import static br.com.itau.geradornotafiscal.core.utils.Constants.ALIQUOTA_LUCRO_PRESUMIDO_ACIMA_5000;
 
 @Service
-public class CalculoImpostService implements CalculoImpostoPort {
+public class CalculoImpostServiceImpl implements CalculoImpostoPort {
     @Override
     public double calcularLucroPresumido(double valorTotalItens) {
         return (valorTotalItens < 1000) ? ALIQUOTA_LUCRO_PRESUMIDO_ATE_1000
