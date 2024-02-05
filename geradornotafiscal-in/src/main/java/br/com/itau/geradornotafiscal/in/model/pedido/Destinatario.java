@@ -1,6 +1,6 @@
 package br.com.itau.geradornotafiscal.in.model.pedido;
 
-import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
+import br.com.itau.geradornotafiscal.core.enums.RegimeTributacao;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,7 +28,7 @@ public class Destinatario {
     @NotEmpty
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("regime_tributacao")
-    private RegimeTributacaoPJ regimeTributacao;
+    private RegimeTributacao regimeTributacao;
 
     @NotNull
     @Size(min = 1)

@@ -6,6 +6,7 @@ import br.com.itau.geradornotafiscal.core.usecase.GeradorNotaFiscalServiceUseCas
 import br.com.itau.geradornotafiscal.in.model.pedido.NotaFiscalResponse;
 import br.com.itau.geradornotafiscal.in.model.pedido.PedidoRequest;
 import br.com.itau.geradornotafiscal.in.validator.PedidoValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.logging.Logger;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/pedido")
 public class GeradorNFController {
@@ -26,17 +29,12 @@ public class GeradorNFController {
 
     @PostMapping("/gerarNotaFiscal")
     public ResponseEntity<NotaFiscalResponse> gerarNotaFiscal(@Valid @RequestBody PedidoRequest pedido) {
-        // Lógica de processamento do pedido
-        // Aqui você pode realizar as operações desejadas com o objeto Pedido
 
-        PedidoValidator.validarPedido(pedido);
-
-        // Exemplo de retorno
-        String mensagem = "Nota fiscal gerada com sucesso para o pedido: " + pedido.getIdPedido();
-
-        Pedido pedidoMapeado = mapper.map(pedido, Pedido.class);
+        Pedido pedidoMapeado = mapper.map(PedidoValidator.validarPedido(pedido), Pedido.class);
         NotaFiscal notaFiscalGerada = geradorNotaFiscalServiceUseCase.gerarNotaFiscal(pedidoMapeado);
         NotaFiscalResponse notaFiscalResponse = mapper.map(notaFiscalGerada, NotaFiscalResponse.class);
+
+        log.info("Nota fiscal gerada com sucesso");
 
         return new ResponseEntity<>(notaFiscalResponse, HttpStatus.OK);
 

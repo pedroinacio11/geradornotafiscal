@@ -2,7 +2,7 @@ package br.com.itau.geradornotafiscal.core.service.impl;
 
 import br.com.itau.geradornotafiscal.core.enums.Finalidade;
 import br.com.itau.geradornotafiscal.core.enums.Regiao;
-import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
+import br.com.itau.geradornotafiscal.core.enums.RegimeTributacao;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
 import br.com.itau.geradornotafiscal.core.model.*;
 import br.com.itau.geradornotafiscal.core.port.AgendamentoPort;
@@ -64,7 +64,7 @@ class GerarNotaFiscalServiceImplTest {
 
         Destinatario destinatario = new Destinatario();
         destinatario.setTipoPessoa(TipoPessoa.JURIDICA);
-        destinatario.setRegimeTributacao(RegimeTributacaoPJ.SIMPLES_NACIONAL);
+        destinatario.setRegimeTributacao(RegimeTributacao.SIMPLES_NACIONAL);
 
         Endereco endereco = new Endereco();
         endereco.setFinalidade(Finalidade.ENTREGA);

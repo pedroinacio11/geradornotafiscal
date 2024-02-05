@@ -1,6 +1,6 @@
 package br.com.itau.geradornotafiscal.core.service;
 
-import br.com.itau.geradornotafiscal.core.enums.RegimeTributacaoPJ;
+import br.com.itau.geradornotafiscal.core.enums.RegimeTributacao;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
 
 import br.com.itau.geradornotafiscal.core.port.CalculoImpostoPort;
@@ -14,7 +14,7 @@ public class CalcularAliquotaTipoPessoaService {
     @Autowired
     private CalculoImpostoPort calculoImpostoPort;
 
-    public double obterAliquota(TipoPessoa tipoPessoa, double valorTotalItens, RegimeTributacaoPJ regimeTributacao) {
+    public double obterAliquota(TipoPessoa tipoPessoa, double valorTotalItens, RegimeTributacao regimeTributacao) {
 
         return switch (tipoPessoa) {
             case FISICA -> calculoImpostoPort.calcularSemRegimeDeTributacao(valorTotalItens);
@@ -22,7 +22,7 @@ public class CalcularAliquotaTipoPessoaService {
         };
     }
 
-    private double calcularPorTipoTributacao(double valorTotalItens, RegimeTributacaoPJ regimeTributacao) {
+    public double calcularPorTipoTributacao(double valorTotalItens, RegimeTributacao regimeTributacao) {
 
         return switch (regimeTributacao) {
             case SIMPLES_NACIONAL -> calculoImpostoPort.calcularSimplesNacional(valorTotalItens);

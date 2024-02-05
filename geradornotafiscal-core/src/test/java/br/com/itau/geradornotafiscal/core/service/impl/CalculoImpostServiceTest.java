@@ -25,7 +25,6 @@ class CalculoImpostServiceTest {
         assertEquals(ALIQUOTA_LUCRO_PRESUMIDO_ATE_2000, calculoImpostService.calcularLucroPresumido(1500));
         assertEquals(ALIQUOTA_LUCRO_PRESUMIDO_ATE_5000, calculoImpostService.calcularLucroPresumido(4000));
         assertEquals(ALIQUOTA_LUCRO_PRESUMIDO_ACIMA_5000, calculoImpostService.calcularLucroPresumido(6000));
-
     }
 
     @Test
