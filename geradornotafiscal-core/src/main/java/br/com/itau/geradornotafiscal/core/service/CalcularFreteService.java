@@ -4,9 +4,6 @@ import br.com.itau.geradornotafiscal.core.enums.Finalidade;
 import br.com.itau.geradornotafiscal.core.enums.Regiao;
 import br.com.itau.geradornotafiscal.core.model.Endereco;
 import br.com.itau.geradornotafiscal.core.model.Pedido;
-import br.com.itau.geradornotafiscal.core.validator.RegiaoValidator;
-import br.com.itau.geradornotafiscal.core.validator.ValorFreteValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.EnumSet;
@@ -16,12 +13,6 @@ import java.util.Set;
 
 @Service
 public class CalcularFreteService {
-
-    @Autowired
-    private RegiaoValidator regiaoValidator;
-
-    @Autowired
-    private ValorFreteValidator validarValorFrete;
 
     private static final Map<Regiao, Double> FRETES_POR_REGIAO = new HashMap<>();
 
@@ -34,13 +25,8 @@ public class CalcularFreteService {
     }
 
     public double calcularValorFreteComPercentual(Pedido pedido) {
-
         double valorFrete = pedido.getValorFrete();
         Regiao regiaoEntrega = calcularRegiaoEntrega(pedido);
-
-        regiaoValidator.validarRegiaoEntrega(regiaoEntrega);
-        validarValorFrete.validarValorFrete(valorFrete);
-
         return valorFrete * FRETES_POR_REGIAO.getOrDefault(regiaoEntrega, 0.0);
     }
 

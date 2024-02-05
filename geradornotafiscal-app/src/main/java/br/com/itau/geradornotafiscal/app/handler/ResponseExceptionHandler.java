@@ -27,20 +27,4 @@ public class ResponseExceptionHandler {
     public ErroResponse handleValidationException(DocumentoValidationException exception) {
         return new ErroResponse(DOCUMENTO_INVALIDO, CPF_CNPJ);
     }
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErroResponse handleValidationException(ValorFreteMuitoAltoException exception) {
-        return new ErroResponse("TESTE FRETE", "1");
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErroResponse handleValidationException(ValorFreteInvalidoException exception) {
-        return new ErroResponse("TESTE FRETE", "2");
-    }
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ErroResponse handleValidationException(ValorFreteZeroException exception) {
-        return new ErroResponse("TESTE FRETE", "3");
-    }
 }
