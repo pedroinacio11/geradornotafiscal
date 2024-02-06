@@ -3,6 +3,7 @@ package br.com.itau.geradornotafiscal.core.service;
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacao;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
 
+import br.com.itau.geradornotafiscal.core.exception.RegimeTributarioException;
 import br.com.itau.geradornotafiscal.core.port.CalculoImpostoPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class CalcularAliquotaTipoPessoaService {
             case SIMPLES_NACIONAL -> calculoImpostoPort.calcularSimplesNacional(valorTotalItens);
             case LUCRO_REAL -> calculoImpostoPort.calcularLucroReal(valorTotalItens);
             case LUCRO_PRESUMIDO -> calculoImpostoPort.calcularLucroPresumido(valorTotalItens);
-            default -> throw new IllegalArgumentException("Regime tributário não suportado: " + regimeTributacao);
+            default -> throw new RegimeTributarioException();
         };
     }
 }

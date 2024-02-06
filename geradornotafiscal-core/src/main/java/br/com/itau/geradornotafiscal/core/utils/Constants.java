@@ -18,4 +18,12 @@ public class Constants {
     public static final double ALIQUOTA_LUCRO_PRESUMIDO_ATE_2000 = 0.09;
     public static final double ALIQUOTA_LUCRO_PRESUMIDO_ATE_5000 = 0.16;
     public static final double ALIQUOTA_LUCRO_PRESUMIDO_ACIMA_5000 = 0.20;
+
+    public static final String VALOR_SOMA_ITENS_INVALIDO = "O valor total item é inválido.";
+    public static final String PED_CODE = "PED_OO1";
+
+    public static final String DOCUMENTO_INVALIDO = "Documento inválido";
+    public static final String CPF_CNPJ_CODE = "CPF_CNPJ_001";
+    public static final String REGIME_TRIBUBTARIO_INVALIDO = "Regimo tributário inválido";
+    public static final String REG_CODE = "REG_001";
 }

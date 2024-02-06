@@ -1,6 +1,6 @@
 package br.com.itau.geradornotafiscal.in.validator;
 
-import br.com.itau.geradornotafiscal.in.exception.PedidoValidationException;
+import br.com.itau.geradornotafiscal.core.exception.PedidoValidationException;
 import br.com.itau.geradornotafiscal.in.model.pedido.Item;
 import br.com.itau.geradornotafiscal.in.model.pedido.PedidoRequest;
 

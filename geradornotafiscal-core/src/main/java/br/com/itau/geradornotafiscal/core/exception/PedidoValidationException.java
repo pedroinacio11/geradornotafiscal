@@ -1,4 +1,4 @@
-package br.com.itau.geradornotafiscal.in.exception;
+package br.com.itau.geradornotafiscal.core.exception;
 
 public class PedidoValidationException extends RuntimeException {
     public PedidoValidationException() {

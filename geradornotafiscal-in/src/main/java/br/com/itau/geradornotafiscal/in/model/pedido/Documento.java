@@ -1,7 +1,6 @@
 package br.com.itau.geradornotafiscal.in.model.pedido;
 
 import br.com.itau.geradornotafiscal.core.enums.TipoDocumento;
-import br.com.itau.geradornotafiscal.in.exception.DocumentoValidationException;
 import br.com.itau.geradornotafiscal.in.validator.NumeroDocumentoValidator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

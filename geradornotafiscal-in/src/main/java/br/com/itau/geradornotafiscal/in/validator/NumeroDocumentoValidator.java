@@ -1,6 +1,6 @@
 package br.com.itau.geradornotafiscal.in.validator;
 
-import br.com.itau.geradornotafiscal.in.exception.DocumentoValidationException;
+import br.com.itau.geradornotafiscal.core.exception.DocumentoValidationException;
 
 public class NumeroDocumentoValidator {
 
