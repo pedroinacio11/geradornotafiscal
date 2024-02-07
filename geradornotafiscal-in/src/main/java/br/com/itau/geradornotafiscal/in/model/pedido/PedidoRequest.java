@@ -3,15 +3,15 @@ package br.com.itau.geradornotafiscal.in.model.pedido;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class PedidoRequest implements Serializable {
+public class PedidoRequest {
 
     @NotNull(message = "O id do pedido é obrigatório")
     @JsonProperty("id_pedido")

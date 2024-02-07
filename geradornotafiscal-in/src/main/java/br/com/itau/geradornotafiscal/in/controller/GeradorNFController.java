@@ -34,7 +34,7 @@ public class GeradorNFController {
         NotaFiscal notaFiscalGerada = geradorNotaFiscalServiceUseCase.gerarNotaFiscal(pedidoMapeado);
         NotaFiscalResponse notaFiscalResponse = mapper.map(notaFiscalGerada, NotaFiscalResponse.class);
 
-        log.info("Nota fiscal gerada com sucesso");
+        log.info("Nota fiscal gerada com sucesso {} ", notaFiscalResponse);
 
         return new ResponseEntity<>(notaFiscalResponse, HttpStatus.OK);
 

@@ -4,6 +4,7 @@ import br.com.itau.geradornotafiscal.core.exception.DocumentoValidationException
 import br.com.itau.geradornotafiscal.core.exception.PedidoValidationException;
 import br.com.itau.geradornotafiscal.core.exception.RegimeTributarioException;
 import br.com.itau.geradornotafiscal.in.model.error.ErroResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,23 +12,29 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import static br.com.itau.geradornotafiscal.core.utils.Constants.*;
 
+@Slf4j
 @RestControllerAdvice
 public class ResponseExceptionHandler {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ErroResponse handleValidationException(PedidoValidationException exception) {
-        return new ErroResponse(VALOR_SOMA_ITENS_INVALIDO, PED_CODE);
+        log.error(PED_CODE + " - " + VALOR_SOMA_ITENS_INVALIDO, exception);
+        return new ErroResponse(PED_CODE, VALOR_SOMA_ITENS_INVALIDO);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErroResponse handleValidationException(DocumentoValidationException exception) {
-        return new ErroResponse(DOCUMENTO_INVALIDO, CPF_CNPJ_CODE);
+        log.error(CPF_CNPJ_CODE + " - " + DOCUMENTO_INVALIDO, exception);
+        return new ErroResponse(CPF_CNPJ_CODE, DOCUMENTO_INVALIDO);
     }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ErroResponse handleValidationException(RegimeTributarioException exception) {
-        return new ErroResponse(REGIME_TRIBUBTARIO_INVALIDO, REG_CODE);
+        log.error(REG_CODE + " - " + REGIME_TRIBUBTARIO_INVALIDO, exception);
+        return new ErroResponse(REG_CODE, REGIME_TRIBUBTARIO_INVALIDO);
     }
+
 }
