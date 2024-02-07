@@ -41,7 +41,7 @@ mvn spring-boot:run
 ### `POST: /api/pedido/gerarNotaFiscal`
 #### Exemplo de Requisição
 
-```json
+```java
 curl --request POST \
   --url http://localhost:8080/api/pedido/gerarNotaFiscal \
   --header 'Content-Type: application/json' \
