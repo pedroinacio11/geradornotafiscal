@@ -10,11 +10,10 @@ class EstoqueAdapterTest {
 
     @Test
     void testEnviarNotaFiscalParaBaixaEstoque() {
-        // Arrange
+
         EstoquePort estoque = new EstoqueAdapter();
         NotaFiscal notaFiscal = new NotaFiscal();
 
-        // Act & Assert
         assertDoesNotThrow(() -> {
             long startTime = System.currentTimeMillis();
             estoque.enviarNotaFiscalParaBaixaEstoque(notaFiscal);

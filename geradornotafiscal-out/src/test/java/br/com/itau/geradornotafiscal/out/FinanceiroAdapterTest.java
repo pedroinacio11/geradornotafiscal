@@ -10,11 +10,10 @@ class FinanceiroAdapterTest {
 
     @Test
     void testEnviarNotaFiscalParaContasReceber() {
-        // Arrange
+
         FinanceiroPort financeiro = new FinanceiroAdapter();
         NotaFiscal notaFiscal = new NotaFiscal();
 
-        // Act & Assert
         assertDoesNotThrow(() -> {
             long startTime = System.currentTimeMillis();
             financeiro.enviarNotaFiscalParaContasReceber(notaFiscal);

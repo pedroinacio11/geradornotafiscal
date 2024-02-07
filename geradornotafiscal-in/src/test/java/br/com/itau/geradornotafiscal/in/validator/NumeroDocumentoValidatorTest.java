@@ -43,7 +43,7 @@ class NumeroDocumentoValidatorTest {
     @Test
     void testIsValidNumero_InvalidDocument() {
 
-        String invalidDocument = "12345"; // Número de documento inválido
+        String invalidDocument = "12345";
         NumeroDocumentoValidator validator = new NumeroDocumentoValidator();
 
         boolean isValid = validator.isValidNumero(invalidDocument);

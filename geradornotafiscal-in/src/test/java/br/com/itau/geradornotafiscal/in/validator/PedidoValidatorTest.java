@@ -44,7 +44,7 @@ class PedidoValidatorTest {
 
     @Test
     void testValidarPedido_InvalidTotal() {
-        // Arrange
+
         List<Item> itens = new ArrayList<>();
 
         Item item1 = new Item();
@@ -67,9 +67,7 @@ class PedidoValidatorTest {
         pedido.setItens(itens);
         pedido.setValorTotalItens(valorTotalItens);
 
-        // Assert
         assertThrows(PedidoValidationException.class, () -> {
-            // Act
             PedidoValidator.validarPedido(pedido);
         });
     }

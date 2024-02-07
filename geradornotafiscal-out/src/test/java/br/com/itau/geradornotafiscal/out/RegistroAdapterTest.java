@@ -10,17 +10,16 @@ class RegistroAdapterTest {
 
     @Test
     void testRegistrarNotaFiscal() {
-        // Arrange
-        RegistroPort registro = new RegistroAdapter();
-        NotaFiscal notaFiscal = new NotaFiscal(); // Criar uma nota fiscal de exemplo
 
-        // Act & Assert
+        RegistroPort registro = new RegistroAdapter();
+        NotaFiscal notaFiscal = new NotaFiscal();
+
         assertDoesNotThrow(() -> {
             long startTime = System.currentTimeMillis();
             registro.RegistrarNotaFiscal(notaFiscal);
             long endTime = System.currentTimeMillis();
             long elapsedTime = endTime - startTime;
-            assertTrue(elapsedTime >= 500); // Verificar se o tempo de execução é pelo menos 500ms
+            assertTrue(elapsedTime >= 500);
         });
     }
 }

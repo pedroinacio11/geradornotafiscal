@@ -29,7 +29,6 @@ class ResponseExceptionHandlerTest {
             throw new PedidoValidationException();
         });
 
-        // Assert
         assertEquals(mensagemEsperada, exception.getMessage());
     }
 }

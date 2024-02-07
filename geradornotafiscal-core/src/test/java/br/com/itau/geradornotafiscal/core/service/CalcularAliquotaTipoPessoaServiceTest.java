@@ -36,7 +36,7 @@ class CalcularAliquotaTipoPessoaServiceTest {
         destinatario.setTipoPessoa(TipoPessoa.FISICA);
         destinatario.setRegimeTributacao(RegimeTributacao.OUTROS);
         pedido.setDestinatario(destinatario);
-        pedido.setValorTotalItens(100.0); // valor total dos itens do pedido
+        pedido.setValorTotalItens(100.0);
 
         double aliquotaEsperada = 10.0;
         when(calculoImpostoPort.calcularSemRegimeDeTributacao(100.0)).thenReturn(aliquotaEsperada);
