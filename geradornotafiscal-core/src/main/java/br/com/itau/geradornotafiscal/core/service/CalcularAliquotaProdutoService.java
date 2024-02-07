@@ -18,11 +18,11 @@ public class CalcularAliquotaProdutoService {
                 .collect(Collectors.toList());
     }
 
-    private double calcularValorTributo(Item item, double aliquotaPercentual) {
+    public double calcularValorTributo(Item item, double aliquotaPercentual) {
         return item.getValorUnitario() * aliquotaPercentual;
     }
 
-    private ItemNotaFiscal criarItemNotaFiscal(Item item, double valorTributo) {
+    public ItemNotaFiscal criarItemNotaFiscal(Item item, double valorTributo) {
         return new ItemNotaFiscal(
                 item.getIdItem(),
                 item.getDescricao(),

@@ -1,6 +1,6 @@
 package br.com.itau.geradornotafiscal.core.service.impl;
 
-import br.com.itau.geradornotafiscal.core.service.CalculoImpostServiceImpl;
+import br.com.itau.geradornotafiscal.core.service.CalcularImpostServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculoImpostServiceTest {
 
     @InjectMocks
-    private CalculoImpostServiceImpl calculoImpostService;
+    private CalcularImpostServiceImpl calculoImpostService;
 
     @BeforeEach
     public void setUp() {

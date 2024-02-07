@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import static br.com.itau.geradornotafiscal.core.utils.Constants.*;
 
 @Service
-public class CalculoImpostServiceImpl implements CalculoImpostoPort {
+public class CalcularImpostServiceImpl implements CalculoImpostoPort {
     @Override
     public double calcularLucroPresumido(double valorTotalItens) {
         return (valorTotalItens < 1000) ? ALIQUOTA_LUCRO_PRESUMIDO_ATE_1000

@@ -53,5 +53,4 @@ public class GerarNotaFiscalServiceImpl implements GeradorNotaFiscalServiceUseCa
 
         return notaFiscal;
     }
-
 }
