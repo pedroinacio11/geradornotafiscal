@@ -16,5 +16,5 @@ public class NumeroDocumentoValidator {
     public static boolean isValidNumero(String numero) {
         return numero != null && (numero.matches("\\d{11}") || numero.matches("\\d{14}"));
     }
-    
+
 }

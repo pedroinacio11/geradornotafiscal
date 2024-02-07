@@ -28,10 +28,13 @@ git clone https://github.com/pedroinacio11/geradornotafiscal.git
 ```
 
 2. **Compilar o projeto:**
+
 ```bash
 mvn clean install
 ```
+
 3. **Executar o projeto:**
+
 ```bash
 mvn spring-boot:run
 ```
@@ -39,6 +42,7 @@ mvn spring-boot:run
 ## 📍 Rotas
 
 ### `POST: /api/pedido/gerarNotaFiscal`
+
 #### Exemplo de Requisição
 
 ```java

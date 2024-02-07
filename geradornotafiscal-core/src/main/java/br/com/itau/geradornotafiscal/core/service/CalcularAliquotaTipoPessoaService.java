@@ -1,9 +1,8 @@
 package br.com.itau.geradornotafiscal.core.service;
 
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacao;
-import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
-
 import br.com.itau.geradornotafiscal.core.exception.RegimeTributarioException;
+import br.com.itau.geradornotafiscal.core.model.Pedido;
 import br.com.itau.geradornotafiscal.core.port.CalculoImpostoPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,11 @@ public class CalcularAliquotaTipoPessoaService {
     @Autowired
     private CalculoImpostoPort calculoImpostoPort;
 
-    public double obterAliquota(TipoPessoa tipoPessoa, double valorTotalItens, RegimeTributacao regimeTributacao) {
+    public double obterAliquota(Pedido pedido) {
+
+        var tipoPessoa = pedido.getDestinatario().getTipoPessoa();
+        var valorTotalItens = pedido.getValorTotalItens();
+        var regimeTributacao = pedido.getDestinatario().getRegimeTributacao();
 
         return switch (tipoPessoa) {
             case FISICA -> calculoImpostoPort.calcularSemRegimeDeTributacao(valorTotalItens);

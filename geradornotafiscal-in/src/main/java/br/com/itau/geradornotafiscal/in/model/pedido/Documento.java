@@ -5,7 +5,8 @@ import br.com.itau.geradornotafiscal.in.validator.NumeroDocumentoValidator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import static br.com.itau.geradornotafiscal.core.enums.TipoDocumento.*;
+import static br.com.itau.geradornotafiscal.core.enums.TipoDocumento.CNPJ;
+import static br.com.itau.geradornotafiscal.core.enums.TipoDocumento.CPF;
 
 @Data
 public class Documento {
@@ -22,7 +23,6 @@ public class Documento {
         this.numero = numeroDocumentoValidator.getDocumento(numero);
         this.tipo = numero.length() == 11 ? CPF : CNPJ;
     }
-
 
 
 }

@@ -10,7 +10,9 @@ import java.util.UUID;
 
 public class NotaFiscalBuilder {
 
-    public static NotaFiscal buildNotaFiscal(Pedido pedido, double valorFreteComPercentual, List<ItemNotaFiscal> itemNotaFiscalList) {
+    public static NotaFiscal buildNotaFiscal(Pedido pedido,
+                                             double valorFreteComPercentual,
+                                             List<ItemNotaFiscal> itemNotaFiscalList) {
         return NotaFiscal.builder()
                 .idNotaFiscal(UUID.randomUUID().toString())
                 .data(LocalDateTime.now())

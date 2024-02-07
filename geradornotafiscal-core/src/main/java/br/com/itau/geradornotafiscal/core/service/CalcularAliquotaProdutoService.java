@@ -2,6 +2,7 @@ package br.com.itau.geradornotafiscal.core.service;
 
 import br.com.itau.geradornotafiscal.core.model.Item;
 import br.com.itau.geradornotafiscal.core.model.ItemNotaFiscal;
+import br.com.itau.geradornotafiscal.core.model.Pedido;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +11,9 @@ import java.util.stream.Collectors;
 @Service
 public class CalcularAliquotaProdutoService {
 
-    public List<ItemNotaFiscal> calcularAliquotaProduto(List<Item> items, double aliquotaPercentual) {
+    public List<ItemNotaFiscal> calcularAliquotaProduto(Pedido pedido, double aliquotaPercentual) {
 
-        return items.stream()
+        return pedido.getItens().stream()
                 .map(item -> criarItemNotaFiscal(item, calcularValorTributo(item, aliquotaPercentual)))
                 .collect(Collectors.toList());
     }

@@ -2,6 +2,7 @@ package br.com.itau.geradornotafiscal.in.model.pedido;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;

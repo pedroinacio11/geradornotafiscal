@@ -1,7 +1,10 @@
 package br.com.itau.geradornotafiscal.core.service;
 
+import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
+import br.com.itau.geradornotafiscal.core.model.Destinatario;
 import br.com.itau.geradornotafiscal.core.model.Item;
 import br.com.itau.geradornotafiscal.core.model.ItemNotaFiscal;
+import br.com.itau.geradornotafiscal.core.model.Pedido;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +31,13 @@ public class CalcularAliquotaProdutoServiceTest {
         Item item2 = new Item("2", "Item 2", 150.0, 3);
         List<Item> items = Arrays.asList(item1, item2);
 
+        Pedido pedido = new Pedido();
+        Destinatario destinatario = new Destinatario();
+        destinatario.setTipoPessoa(TipoPessoa.FISICA);
+        pedido.setDestinatario(destinatario);
+        pedido.setValorTotalItens(100.0); // valor total dos itens do pedido
+        pedido.setItens(items);
+
         // Calcula percentual da aliquota
         double aliquotaPercentual = 0.05; // 5%
 
@@ -36,7 +46,7 @@ public class CalcularAliquotaProdutoServiceTest {
         double tributoEsperado2 = 150.0 * 0.05; // 7.5
 
         // Executando o método a ser testado
-        List<ItemNotaFiscal> result = service.calcularAliquotaProduto(items, aliquotaPercentual);
+        List<ItemNotaFiscal> result = service.calcularAliquotaProduto(pedido, aliquotaPercentual);
 
         // Verifica os resultados
         assertEquals(2, result.size());

@@ -39,11 +39,11 @@ public class GerarNotaFiscalServiceImpl implements GeradorNotaFiscalServiceUseCa
     @Override
     public NotaFiscal gerarNotaFiscal(Pedido pedido) {
 
-        var notaFiscal = NotaFiscalBuilder.buildNotaFiscal(pedido,
-                calcularFreteService.calcularValorFreteComPercentual(pedido),
-                calcularAliquotaProdutoService.calcularAliquotaProduto(
-                        pedido.getItens(),
-                        obterAliquotaTipoPessoa(pedido)));
+        var valorFrete = calcularFreteService.calcularValorFreteComPercentual(pedido);
+        var valorAliquotaPessoa = calcularAliquotaTipoPessoaService.obterAliquota(pedido);
+        var vaorAliquotaProduto = calcularAliquotaProdutoService.calcularAliquotaProduto(pedido, valorAliquotaPessoa);
+
+        var notaFiscal = NotaFiscalBuilder.buildNotaFiscal(pedido, valorFrete, vaorAliquotaProduto);
 
         estoquePort.enviarNotaFiscalParaBaixaEstoque(notaFiscal);
         registroPort.RegistrarNotaFiscal(notaFiscal);
@@ -54,11 +54,4 @@ public class GerarNotaFiscalServiceImpl implements GeradorNotaFiscalServiceUseCa
         return notaFiscal;
     }
 
-    private double obterAliquotaTipoPessoa(Pedido pedido) {
-
-        return calcularAliquotaTipoPessoaService.obterAliquota(
-                pedido.getDestinatario().getTipoPessoa(),
-                pedido.getValorTotalItens(),
-                pedido.getDestinatario().getRegimeTributacao());
-    }
 }

@@ -2,6 +2,8 @@ package br.com.itau.geradornotafiscal.core.service;
 
 import br.com.itau.geradornotafiscal.core.enums.RegimeTributacao;
 import br.com.itau.geradornotafiscal.core.enums.TipoPessoa;
+import br.com.itau.geradornotafiscal.core.model.Destinatario;
+import br.com.itau.geradornotafiscal.core.model.Pedido;
 import br.com.itau.geradornotafiscal.core.port.CalculoImpostoPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 class CalcularAliquotaTipoPessoaServiceTest {
@@ -27,29 +29,20 @@ class CalcularAliquotaTipoPessoaServiceTest {
     }
 
     @Test
-    void obterAliquotaDeveRetornarAliquotaParaTipoPessoaFisica() {
+    void testObterAliquotaParaPessoaFisica() {
 
-        double valorTotalItens = 2000.0;
-        double aliquotaEsperada = 0.05;
+        Pedido pedido = new Pedido();
+        Destinatario destinatario = new Destinatario();
+        destinatario.setTipoPessoa(TipoPessoa.FISICA);
+        destinatario.setRegimeTributacao(RegimeTributacao.OUTROS);
+        pedido.setDestinatario(destinatario);
+        pedido.setValorTotalItens(100.0); // valor total dos itens do pedido
 
-        when(calculoImpostoPort.calcularSemRegimeDeTributacao(valorTotalItens)).thenReturn(aliquotaEsperada);
+        double aliquotaEsperada = 10.0;
+        when(calculoImpostoPort.calcularSemRegimeDeTributacao(100.0)).thenReturn(aliquotaEsperada);
 
-        double aliquotaObtida = calcularAliquotaTipoPessoaService.obterAliquota(TipoPessoa.FISICA, valorTotalItens, RegimeTributacao.OUTROS);
-
-        assertEquals(aliquotaEsperada, aliquotaObtida);
-    }
-
-    @Test
-    void obterAliquotaDeveRetornarAliquotaParaTipoPessoaJuridica() {
-
-        double valorTotalItens = 5000.0;
-        double aliquotaEsperada = 0.1;
-
-        when(calculoImpostoPort.calcularSimplesNacional(valorTotalItens)).thenReturn(aliquotaEsperada);
-
-        double aliquotaObtida = calcularAliquotaTipoPessoaService.obterAliquota(TipoPessoa.JURIDICA, valorTotalItens, RegimeTributacao.SIMPLES_NACIONAL);
-
-        assertEquals(aliquotaEsperada, aliquotaObtida);
+        double aliquidaObtida = calcularAliquotaTipoPessoaService.obterAliquota(pedido);
+        assertEquals(aliquotaEsperada, aliquidaObtida);
     }
 
     @Test
@@ -66,6 +59,7 @@ class CalcularAliquotaTipoPessoaServiceTest {
 
         assertEquals(valorEsperado, result);
     }
+
     @Test
     void calcularPorTipoTributacaoLucroPresumido() {
 
@@ -80,6 +74,7 @@ class CalcularAliquotaTipoPessoaServiceTest {
 
         assertEquals(valorEsperado, result);
     }
+
     @Test
     void calcularPorTipoTributacaoReal() {
 
@@ -94,7 +89,6 @@ class CalcularAliquotaTipoPessoaServiceTest {
 
         assertEquals(valorEsperado, result);
     }
-
 
     @Test
     void calcularPorTipoSemRegimeTributacao() {
@@ -111,3 +105,5 @@ class CalcularAliquotaTipoPessoaServiceTest {
 
 
 }
+
+

@@ -7,5 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class GeradorNotaFiscalApplicationTests {
 
     @Test
-    void contextLoads() {}
+    void contextLoads() {
+    }
 }

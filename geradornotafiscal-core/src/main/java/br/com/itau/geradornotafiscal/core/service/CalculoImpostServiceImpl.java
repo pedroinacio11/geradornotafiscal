@@ -4,7 +4,6 @@ import br.com.itau.geradornotafiscal.core.port.CalculoImpostoPort;
 import org.springframework.stereotype.Service;
 
 import static br.com.itau.geradornotafiscal.core.utils.Constants.*;
-import static br.com.itau.geradornotafiscal.core.utils.Constants.ALIQUOTA_LUCRO_PRESUMIDO_ACIMA_5000;
 
 @Service
 public class CalculoImpostServiceImpl implements CalculoImpostoPort {
