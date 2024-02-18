@@ -41,9 +41,9 @@ public class GerarNotaFiscalServiceImpl implements GeradorNotaFiscalServiceUseCa
 
         var valorFrete = calcularFreteService.calcularValorFreteComPercentual(pedido);
         var valorAliquotaPessoa = calcularAliquotaTipoPessoaService.obterAliquota(pedido);
-        var vaorAliquotaProduto = calcularAliquotaProdutoService.calcularAliquotaProduto(pedido, valorAliquotaPessoa);
+        var valorAliquotaProduto = calcularAliquotaProdutoService.calcularAliquotaProduto(pedido, valorAliquotaPessoa);
 
-        var notaFiscal = NotaFiscalBuilder.buildNotaFiscal(pedido, valorFrete, vaorAliquotaProduto);
+        var notaFiscal = NotaFiscalBuilder.buildNotaFiscal(pedido, valorFrete, valorAliquotaProduto);
 
         estoquePort.enviarNotaFiscalParaBaixaEstoque(notaFiscal);
         registroPort.RegistrarNotaFiscal(notaFiscal);
